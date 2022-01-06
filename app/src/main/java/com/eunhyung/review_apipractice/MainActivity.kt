@@ -7,15 +7,15 @@ import android.widget.Toast
 import com.eunhyung.review_apipractice.api.APIList
 import com.eunhyung.review_apipractice.api.ServerAPI
 import com.eunhyung.review_apipractice.models.BasicResponse
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
 
         btnLogin.setOnClickListener {
 
@@ -33,25 +33,25 @@ class MainActivity : AppCompatActivity() {
                     call: Call<BasicResponse>,
                     response: Response<BasicResponse>
                 ) {
-                    
+
 //                    로그인 성공/실패던, 응답 자체가 돌아온 경우
 //                    서버가 정상 동작함
-                    
+
 //                    성공/실패 경우 나뉨
                     if (response.isSuccessful){
 //                        로그인 성공 => 아이디/비번 맞음
 //                        Toast.makeText(this@MainActivity, "로그인 성공", Toast.LENGTH_SHORT).show()
-                        
+
 //                        ~~~님 환영합니다! 토스트 출력 => 로그인한 사람의 닉네임 추출
                         val br = response.body()!!  // 서버의 응답 본문(body)을 자동 분석된 BasicResponse형태로 저장
-                        
+
                         val loginUserNick = br.data.user.nick_name
 
-                        Toast.makeText(this@MainActivity, "${loginUserNick}님 환영합니다!", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, "${loginUserNick}님 환영합니다!", Toast.LENGTH_SHORT).show()
                     }
                     else {
 //                        로그인 실패 => 아이디 틀림 or 비번 틀림
-                        Toast.makeText(this@MainActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@LoginActivity, "로그인 실패", Toast.LENGTH_SHORT).show()
                     }
                 }
 
