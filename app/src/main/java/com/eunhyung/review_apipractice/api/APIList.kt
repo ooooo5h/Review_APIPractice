@@ -2,10 +2,7 @@ package com.eunhyung.review_apipractice.api
 
 import com.eunhyung.review_apipractice.models.BasicResponse
 import retrofit2.Call
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
-import retrofit2.http.PUT
+import retrofit2.http.*
 
 interface APIList {
 
@@ -28,5 +25,12 @@ interface APIList {
         @Field("nick_name") nick : String,
         @Field("phone") phone : String,
     ) : Call<BasicResponse>  // 회원가입도 로그인처럼 code/message/data 세가지만 제일 바깥 {}에 담겨있다.
+
+//    * 중복 검사 기능
+    @GET("/user/check")
+    fun getRequestDuplCheck(
+        @Query("type") type : String,
+        @Query("value") value : String,
+    ) : Call<BasicResponse>
 
 }
