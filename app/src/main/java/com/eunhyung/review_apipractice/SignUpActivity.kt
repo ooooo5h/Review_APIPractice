@@ -3,6 +3,7 @@ package com.eunhyung.review_apipractice
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.eunhyung.review_apipractice.api.APIList
 import com.eunhyung.review_apipractice.api.ServerAPI
 import com.eunhyung.review_apipractice.models.BasicResponse
@@ -42,6 +43,12 @@ class SignUpActivity : AppCompatActivity() {
                         val br = response.body()!!  // BasicResponse를 추출
 
 //                        회원가입 성공 처리만, br변수 이용해서 진행
+//                        이미 같은 구조에 대한 분석을 클래스;변수들로 만들어둔 상태
+//                        분석이 끝났다고 전제하고, 변수들을 가져다 사용
+                        val signUpNickname = br.data.user.nick_name
+                        Toast.makeText(this@SignUpActivity, "${signUpNickname}님 회원가입이 성공적으로 되었습니다!", Toast.LENGTH_SHORT).show()
+
+                        finish()   // 로그인 화면으로 복귀
                     }
                     else {
 //                        400, 403, 404, 500 등등 모든 에러
