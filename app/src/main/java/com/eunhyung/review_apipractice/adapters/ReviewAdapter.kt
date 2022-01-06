@@ -2,6 +2,7 @@ package com.eunhyung.review_apipractice.adapters
 
 import android.content.Context
 import android.content.Intent
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.eunhyung.review_apipractice.R
 import com.eunhyung.review_apipractice.models.ReviewData
+import org.w3c.dom.Text
 
 class ReviewAdapter(
     val mContext : Context,
@@ -17,8 +19,15 @@ class ReviewAdapter(
 
     inner class MyViewHolder(val row : View) : RecyclerView.ViewHolder(row){
 
+        val imgThumbnail = row.findViewById<ImageView>(R.id.imgThumbnail)
+        val imgUserProfile = row.findViewById<ImageView>(R.id.imgUserProfile)
+        val txtReviewTitle = row.findViewById<TextView>(R.id.txtReviewTitle)
+        val txtUserNickname = row.findViewById<TextView>(R.id.txtUserNickname)
 
         fun bind(data: ReviewData) {
+
+            txtReviewTitle.text = data.title
+            txtUserNickname.text = data.user.nick_name
 
 
         }
