@@ -5,5 +5,6 @@ package com.eunhyung.review_apipractice.models
 class BasicResponse(
     val code : Int,
     val message : String,
+    val data : DataResponse,
 ) {
 }
