@@ -2,8 +2,11 @@ package com.eunhyung.review_apipractice
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.eunhyung.review_apipractice.adapters.ReviewAdapter
 import com.eunhyung.review_apipractice.models.BasicResponse
 import com.eunhyung.review_apipractice.models.ReviewData
+import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -11,6 +14,8 @@ import retrofit2.Response
 class MainActivity : BaseActivity() {
 
     val mReviewList = ArrayList<ReviewData>()
+
+    lateinit var mReviewAdapter : ReviewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,5 +39,9 @@ class MainActivity : BaseActivity() {
 
 
         })
+
+        mReviewAdapter = ReviewAdapter(mContext, mReviewList)
+        reviewRecyclerView.adapter = mReviewAdapter
+        reviewRecyclerView.layoutManager = LinearLayoutManager(mContext)
     }
 }
