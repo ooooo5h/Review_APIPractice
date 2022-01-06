@@ -23,7 +23,7 @@ class SignUpActivity : AppCompatActivity() {
             val retrofit = ServerAPI.getRetrofit()
             val apiList = retrofit.create(APIList::class.java)
 
-            apiList.
+            apiList.putRequestSignUp(inputEmail, inputPw, inputNickname, inputPhoneNum)
 
         }
     }
