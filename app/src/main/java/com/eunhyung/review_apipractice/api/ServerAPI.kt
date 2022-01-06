@@ -1,6 +1,7 @@
 package com.eunhyung.review_apipractice.api
 
 import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class ServerAPI {
 
@@ -18,7 +19,22 @@ class ServerAPI {
 
 //        retrofit 변수에 환경설정 + 객체화 => 가져다 쓸 수 있게 하는 기능(함수)
         fun getRetrofit() : Retrofit {
-
+            
+//            retrofit 변수가  null이라면, 새 객체를 만들어두자
+//            null이 아니라면, 있는 객체를 사용하게 하자
+//            하나의 객체를 계속 재활용하게 유도 => 디자인 패턴 : 싱글톤 패턴 적용
+            
+            if (retrofit == null) {
+                
+//                실제 레트로핏 객체 생성
+                retrofit = Retrofit.Builder()
+                    .baseUrl(BASE_URL)  // 어느 서버 안에서 움직일건지?
+                    .addConverterFactory(GsonConverterFactory.create())  // JSON응답을 자동으로 알아서 분석하는 도구 설치
+                    .build()
+            }
+    
+//            retrofit이 null이라면 채워주고, 아니라면 있는 객체 사용
+            return retrofit!! // 절대 null일 리가 없다고 명시  
         }
 
 
