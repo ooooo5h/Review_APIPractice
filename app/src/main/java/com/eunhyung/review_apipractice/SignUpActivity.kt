@@ -25,10 +25,6 @@ class SignUpActivity : AppCompatActivity() {
             val inputNickname = edtNickname.text.toString()
             val inputPhoneNum = edtPhone.text.toString()
 
-//            API 호출(회원가입) => ServerAPI + APIList 조합
-            val retrofit = ServerAPI.getRetrofit()
-            val apiList = retrofit.create(APIList::class.java)
-
             apiList.putRequestSignUp(inputEmail, inputPw, inputNickname, inputPhoneNum).enqueue(object : Callback<BasicResponse>{
                 override fun onResponse(
                     call: Call<BasicResponse>,
@@ -72,9 +68,6 @@ class SignUpActivity : AppCompatActivity() {
         btnEmailCheck.setOnClickListener {
 
             val inputEmail = edtEmail.text.toString()
-
-            val retrofit = ServerAPI.getRetrofit()
-            val apiList = retrofit.create(APIList::class.java)
 
             apiList.getRequestDuplCheck("EMAIL", inputEmail).enqueue(object : Callback<BasicResponse>{
                 override fun onResponse(
